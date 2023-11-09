@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ingeni/ingeni-simple-div",
+  "version": "2023.1.0",
+  "title": "Ingeni Simple Div",
+  "category": "design",
+  "icon": "grid-view",
+  "description": "A Gutenberg block for creating simple, plain-vanilla, divs.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "ingeni-simple-div",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
