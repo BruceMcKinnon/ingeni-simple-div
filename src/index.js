@@ -4,8 +4,6 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -14,15 +12,17 @@ import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-//import './style.scss';
-import './editor.scss';
+import './style.scss';
 
 /**
  * Internal dependencies
  */
-//import Edit from './edit';
-//import save from './save';
+import editBlock from './edit';
+import saveBlock from './save';
+
 import metadata from './block.json';
+import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+
 
 /**
  * Every block starts by registering a new block type definition.
@@ -30,22 +30,7 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
-    edit: () => {
-        const blockProps = useBlockProps( { className: '' } );
-
-        return (
-            <div { ...blockProps }>
-                <InnerBlocks />
-            </div>
-        );
-    },
-
-    save: () => {
-        const blockProps = useBlockProps.save( { className: '' } );
-        return (
-            <div { ...blockProps }>
-                <InnerBlocks.Content />
-            </div>
-        );
-    },
+	edit: editBlock,
+	save: saveBlock
 } );
+
