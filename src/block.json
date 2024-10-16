@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "ingeni/ingeni-simple-div",
-	"version": "2024.1.0",
+	"version": "2024.2.0",
 	"title": "Ingeni Simple Div",
 	"category": "design",
 	"icon": "grid-view",
@@ -34,6 +34,14 @@
 		"blockID": {
 		"type": "string",
 		"default": ""
+		},
+		"blockUrl": {
+		"type": "string",
+		"default": ""
+		},
+		"openNewWindow": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

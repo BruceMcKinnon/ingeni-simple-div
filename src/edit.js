@@ -12,12 +12,14 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { InnerBlocks, useBlockProps, InspectorControls, MediaPlaceholder } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
 
 import {
 	PanelBody,
 	PanelRow,
 	TextControl,
     Button,
+	ToggleControl,
 } from "@wordpress/components";
 
 
@@ -67,6 +69,23 @@ export default function editBlock( props ) {
 						value={ attributes.blockID }
 					/>
 					</PanelRow>
+
+					<PanelRow>
+						<TextControl
+							label="Navigate on Click URL"
+							type="url"
+							onChange={ ( blockUrl ) => setAttributes( { blockUrl } ) }
+							value={ attributes.blockUrl }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label="Open in New Window"
+							checked={ attributes.openNewWindow }
+							onChange={() => setAttributes({ openNewWindow: !attributes.openNewWindow })}
+						/>
+					</PanelRow>
+
 					<PanelRow>
 						<MediaPlaceholder
 							onSelect = {
@@ -85,16 +104,19 @@ export default function editBlock( props ) {
 						<Button isDestructive onClick={clearBackground}>Clear Background Image</Button>
 					</PanelRow>
 
+
 				</PanelBody>
 			</InspectorControls>
 
 
+			
 			<div { ...blockProps } >
 				<div className="bg_img" style={bgStyle} ></div>
                 <div class="wrapper">
 				    <InnerBlocks />
                 </div>
 			</div>
+
 		</div>
 	);
 

@@ -1,5 +1,6 @@
 
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -22,12 +23,31 @@ export default function saveBlock( props ) {
 		backgroundImage: 'url(' + attributes.imageUrl + ')',
 	  };
 
-	return (
-		<div { ...useBlockProps.save() } id={ attributes.blockID }>
-			<div className="bg_img" style={bgStyle}></div>
-            <div class="wrapper">
-                <InnerBlocks.Content />
-            </div>
-		</div>
-	);
+	var targetAttrib = "";
+	if (attributes.openNewWindow) {
+		targetAttrib = "_blank";
+	}
+
+	if ( attributes.blockUrl !== '') {
+		return (
+			<a href={attributes.blockUrl} target={targetAttrib}>
+				<div { ...useBlockProps.save() } id={ attributes.blockID }>
+					<div className="bg_img" style={bgStyle}></div>
+					<div class="wrapper">
+						<InnerBlocks.Content />
+					</div>
+				</div>
+			</a>
+		);
+	} else {
+
+		return (
+			<div { ...useBlockProps.save() } id={ attributes.blockID }>
+				<div className="bg_img" style={bgStyle}></div>
+				<div class="wrapper">
+					<InnerBlocks.Content />
+				</div>
+			</div>
+		);
+	}
 }
